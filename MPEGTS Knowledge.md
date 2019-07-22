@@ -5,6 +5,8 @@
   - [Transport Streams](#transport-streams)
 - [Why are we looking at this?](#why-are-we-looking-at-this)
   - [HLS uses it](#hls-uses-it)
+    - [What is an IDR frame?](#what-is-an-idr-frame)
+    - [What are I B P frames?](#what-are-i-b-p-frames)
 - [MPEG-2 Transport Stream Specifics](#mpeg-2-transport-stream-specifics)
   - [What makes up a transport stream?](#what-makes-up-a-transport-stream)
     - [The Header](#the-header)
@@ -20,7 +22,6 @@
 - [Tools](#tools)
 - [Glossary](#glossary)
 - [References](#references)
-
 
 ## Types of MPEG-2
 
@@ -39,34 +40,26 @@ A transport stream is used for transmission of multiplexed and packetized elemen
 The HLS specification defines the usage of MPEGTS or fragmented MP4 delivery.
 
 * [MPEG-2 Transport Streams](https://tools.ietf.org/html/draft-pantos-http-live-streaming-23#section-3.2)
-
 * [Fragmented MPEG-4](https://tools.ietf.org/html/draft-pantos-http-live-streaming-23#section-3.3)
 
 The HLS specification defines a few things about how the TS segment should:
 
 * Only have a single program. These type of Transport streams are referred to as SPTS or Single Program Transport Stream
-
 * The first two packets in each segment should contain the Program Association Table (PAT) and Program Map Table (PMT).
+  * Therefore the first or second packet in the transport stream should contain the Program Specific Information section. Which means the Payload Unit Start Indicator (PUSI) flag should be set on the first packet.
+  * You can use a EXT-X-MAP tag to identify where the PAT and PMT can be found for MPEGTS content if it is available outside the segment.
 
-    * Therefore the first or second packet in the transport stream should contain the Program Specific Information section. Which means the Payload Unit Start Indicator (PUSI) flag should be set on the first packet.
+There is also a tag in HLS called `#EXT-X-INDEPENDANT-SEGMENTS`. This tag asserts that all segments can be decoded and played independently of each other.
 
-    * You can use a EXT-X-MAP tag to identify where the PAT and PMT can be found for MPEGTS content if it is available outside the segment.
+In order to guarantee the above assertion, you need to make sure that the segment only refers to data frames that are included inside the segment. The only (? to my knowledge) method to do this is to ensure that every segment begins with a IDR frame.
 
-        * **Perhaps we could reduce the overhead of our segments metadata this way by reducing the duplication of this data. (INGEST)**
-
-There is also a tag in HLS called *#EXT-X-INDEPENDANT-SEGMENTS. *This tag asserts that all segments can be decoded and played independently of each other.
-
-In order to guarantee the above assertion, you need to make sure that the segment only refers to data frames that are included inside the segment. The (only?) method to do this is to ensure that every segment begins with a IDR frame.
-
-What is an IDR frame?
+#### What is an IDR frame?
 
 "An encoder sends an IDR (Instantaneous Decoder Refresh) coded picture (made up of I- or SI-slices) to clear the contents of the reference picture buffer. On receiving an IDR coded picture, the decoder marks all pictures in the reference buffer as ‘unused for reference’. All subsequent transmitted slices can be decoded without reference to any frame decoded prior to the IDR picture. The first picture in a coded video sequence is always an IDR picture." 
 
 - Iain E. G. Richardson’s [H.264 and MPEG-4 Video Compression](http://www.amazon.com/H-264-MPEG-4-Video-Compression-Generation/dp/0470848375/ref=sr_1_2?s=books&ie=UTF8&qid=1325020249&sr=1-2)
 
-*What are I B P frames?*
-
-IDR frames are a sub-classification of I frames. All IDR frames are I frames, not all I frames are IDR frames.
+Not all I-Frames are IDR frames, but all IDR frames are I frames.
 
 ## MPEG-2 Transport Stream Specifics
 
@@ -74,13 +67,13 @@ IDR frames are a sub-classification of I frames. All IDR frames are I frames, no
 
 Packets make up a transport stream. It’s packets all the way down. 
 
-![image alt text](./images/mpegts/image_0.jpg)
+![Turtles all the way down](./images/mpegts/image_0.jpg)
 
 There is no global file header like many other file types (including program streams!), instead, each packet has a header. The structure of the header of a packet is very well defined. It takes up exactly 4-bytes.
 
 #### The Header
 
-![image alt text](./images/mpegts/image_1.png)
+![Header information for MPEG-TS](./images/mpegts/image_1.png)
 
 The table above shows the format that the header takes, including the number of bits from the bytes that are included. Many of the values are particular bits in one of the four bytes, so you need to bitmask, which is why the 32-bit bitmask is provided.
 
@@ -108,13 +101,13 @@ When a file is being encoded, you can identify what PID should be used if your d
 
 Program Specific Information or PSI, is a collection of "tables". Each table begins with a header, which is defined below, and these are included in the payload of a packet. The PSI tables are one type of packet that can trigger the Payload Unit Start Indicator to be set. Similar to the header of the packet the table is a well-defined structure.
 
-![image alt text](./images/mpegts/image_2.png)
+![PSI layout](./images/mpegts/image_2.png)
 
 ###### Program Association Table (PAT)
 
 The table data for the PAT essentially gives you a map of what PIDs are part of what programs. This table will always be referenced as PID 0x0000, and table id 0x00. As noted above in the diagram, all the tables end with a checksum, so you can always guarantee that the data came over the wire correctly. This is part of the error detection properties of MPEGTS.
 
-![image alt text](./images/mpegts/image_3.png)
+![PAT layout](./images/mpegts/image_3.png)
 
 With HLS as we are dealing with single program streams, the benefit of this table is it gives us a list of the PIDs we can expect when processing the rest of the stream.
 
@@ -124,7 +117,7 @@ The Program Map Table or PMT describes the contents of each PID, so combined wit
 
 Inside the PMT is a PID reference for the Program Clock Reference (PCR), which is what the decoder can use to synchronize the playback of the multiple streams. The packet identified by this PID will contain a timestamp in the adaptation field of that packet, this timestamp can be used to generate a clock in the decoder. The Presentation timestamps are relative to this value.
 
-![image alt text](./images/mpegts/image_4.png)
+![PMT layout](./images/mpegts/image_4.png)
 
 
 Another concept that is introduced here is the Elementary Stream (ES), this is finally, the ACTUAL data that you are trying to deliver. The rest of what has been described so far is the mechanism to get it to the end-user, and able to be reassembled into something for playback!
@@ -137,7 +130,7 @@ Some examples values for stream types are:
 
 * 15 == AAC audio
 
-Also inside the PMT are additional "[descriptors](https://en.wikipedia.org/wiki/Program-specific_information#Program_Element_Descriptor_Tags)", some things of interest are part of this, but many are defined as optional and many decoders don’t use the data included as the DVB standard says that many values should be ignored.
+Also inside the PMT are additional [descriptors](https://en.wikipedia.org/wiki/Program-specific_information#Program_Element_Descriptor_Tags), some things of interest are part of this, but many are defined as optional and many decoders don’t use the data included as the DVB standard says that many values should be ignored.
 
 ##### Packetized Elementary Stream (PES)
 
@@ -145,19 +138,18 @@ The payload of a TS packet can be a PES packet. It begins with a start code to i
 
 In the world of MPEGTS this is where things start to become very individualized to the type of data that is being transferred.
 
-![image alt text](./images/mpegts/image_5.png)
+![PES layout](./images/mpegts/image_5.png)
 
 There is one more [header](https://en.wikipedia.org/wiki/Elementary_stream), that leads the actual Data section of the stream, which contains resolution, frame rate, bitrate, and some encoder settings, but as of right now, this is one layer deeper than we need to go right now. But like it was mentioned earlier, it’s packets all the way down. With that, that’s essentially everything you need to know about the MPEGTS format, and some you don’t, but… your mileage may vary. 
 
 ## Tools
 
-TSTools: [https://github.com/kynesim/tstools](https://github.com/kynesim/tstools) 
+**TSTools**: [https://github.com/kynesim/tstools](https://github.com/kynesim/tstools) 
 
 * Written in C, pretty strict on its handling of files, file MUST begin with a sync byte, otherwise it won’t parse or operate on the various CLI tools that are part of this repository.
-
 * Mac users: [https://github.com/stuarthicks/tstools](https://github.com/stuarthicks/tstools) fork that builds, at the time only included changes are to use cmake over make, includes a brew cask
 
-gots: [https://github.com/Comcast/gots](https://github.com/Comcast/gots)
+**gots**: [https://github.com/Comcast/gots](https://github.com/Comcast/gots)
 
 * Written in Go
 
