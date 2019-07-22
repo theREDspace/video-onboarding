@@ -2,10 +2,11 @@
 
 - [Video Terms](#video-terms)
 - [Video File Format Breakdown](#video-file-format-breakdown)
-- [Video Streaming Tech](#video-streaming-tech)
+- [Video Streaming Options](#video-streaming-options)
   - [Progressive](#progressive)
   - [RTMP Streaming](#rtmp-streaming)
   - [HTTP Adaptive Bitrate Streaming](#http-adaptive-bitrate-streaming)
+- [MPEG Transport Stream deep-dive](#mpeg-transport-stream-deep-dive)
 - [HLS Specifics](#hls-specifics)
   - [Compatibility](#compatibility)
 - [Extra Streaming Concepts](#extra-streaming-concepts)
@@ -40,7 +41,7 @@ The most popular container formats we work with are part of MPEG-2, and MPEG-4 s
 
 ---
 
-## Video Streaming Tech
+## Video Streaming Options
 
 ### Progressive
 
@@ -80,6 +81,10 @@ Cons:
 [Example ABS player (HLS, DASH, MSS) with bitrate graphs/stats](http://orange-opensource.github.io/hasplayer.js/1.11.0/samples/Dash-IF/index.html)
 
 ---
+
+## MPEG Transport Stream deep-dive
+
+See [here](./MPEGTS_Knowledge.md).
 
 ## HLS Specifics
 
