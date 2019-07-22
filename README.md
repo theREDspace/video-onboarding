@@ -44,21 +44,23 @@ The most popular container formats we work with are part of MPEG-2, and MPEG-4 s
 
 ### Progressive
 
-* Single video file hosted on server
-* Player downloads entire file
+* Single video file hosted on web server available via HTTP.
+* Player downloads file from web server and handles playback.
+* Having the `moov` atom at the beginning of a video allows web browsers to perform fast-seeking on progressively served files. The HTTP server also must support HTTP Range requests. FFmpeg related flag: `-movflags faststart`.
 
 Pros
 * Simple, broad compatibility
 
 Cons
-* Wasted data for content transferred but not watched
+* Wasted data for content transferred but not watched (if moov is at back of file)
 * Single video quality (bitrate), not ideal for many real-world network conditions
 * No live streaming capability
 
 ### RTMP Streaming
 
-Custom protocol for streaming video in chunks and variable qualities.
-Superseded by HTTP-based streaming technologies
+Protocol for streaming video in chunks and variable qualities developed by Macromedia / Adobe. It has many variations for different use-cases. RTMP(S|E|T|P). Largely has been superseded by HTTP-based streaming technologies due to content delivery network support and ubiquity of HTTP-based delivery.
+
+Notable exception to this rule: HQ Trivia used RTMP to stream their media.
 
 ### HTTP Adaptive Bitrate Streaming
 
@@ -115,7 +117,6 @@ The project [HLS.js](https://github.com/video-dev/hls.js) handles this conversio
   * Allows for ads to be chosen based on current inventory and possibly targeted based on current user data
 * VAST, VPAID, VMAP
   * Video advertising format standards developed by the IAB (Interactive Advertising Bureau)
-  * We'll all be learning more about this
 * Encrypted Media Extensions (EME)
   * Browser API allowing implementation of DRM (Digital Rights Management)
 
