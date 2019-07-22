@@ -13,10 +13,11 @@
   - [Related Tech](#related-tech)
   - [References](#references)
 
+Below you will see `media content` used as a short-hand for this document to mean audio, video, and/or metadata tracks of data, representing what would be normally called... a video.
 
 ## Video Terms
 
-- **Media Content**: audio, video, and metadata tracks of information when synchronized allow for the computer to playback content
+
 - **Hardware Encoder**: computer with specialized hardware intended for the production of media content.
 - **Software Encoder**: runs on general commodity hardware and can produce media content albiet generally at a frame-per-second speed than a hardware encoder.
 - **Codecs**: short for coder-decoder, technologies which enables smaller file sizes for media content (audio and video). Examples: H.264, AAC-LC, Opus, VP9, H.265, AV1.
