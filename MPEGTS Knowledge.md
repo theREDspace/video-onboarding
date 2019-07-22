@@ -6,7 +6,6 @@
 - [Why are we looking at this?](#why-are-we-looking-at-this)
   - [HLS uses it](#hls-uses-it)
     - [What is an IDR frame?](#what-is-an-idr-frame)
-    - [What are I B P frames?](#what-are-i-b-p-frames)
 - [MPEG-2 Transport Stream Specifics](#mpeg-2-transport-stream-specifics)
   - [What makes up a transport stream?](#what-makes-up-a-transport-stream)
     - [The Header](#the-header)
