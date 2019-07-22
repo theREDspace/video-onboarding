@@ -17,7 +17,6 @@ Below you will see `media content` used as a short-hand for this document to mea
 
 ## Video Terms
 
-
 - **Hardware Encoder**: computer with specialized hardware intended for the production of media content.
 - **Software Encoder**: runs on general commodity hardware and can produce media content albiet generally at a frame-per-second speed than a hardware encoder.
 - **Codecs**: short for coder-decoder, technologies which enables smaller file sizes for media content (audio and video). Examples: H.264, AAC-LC, Opus, VP9, H.265, AV1.
@@ -64,14 +63,14 @@ Superseded by HTTP-based streaming technologies
 
 ### HTTP Adaptive Bitrate Streaming
 
-* Encodes source video to multiple different bitrates (renditions)
-* Each rendition is split into small video 'segments' ~10 seconds long
-* Standards: HLS, MPEG-DASH, MS Smooth Streaming, etc
+* Encodes source video to multiple different bitrates referred to as renditions
+* Each rendition is segmented into small video 'segments' which range in duration based on requirements, but are generally between 6-10 seconds in duration.
+* Standards: HLS, MPEG-DASH, MS Smooth Streaming...
 
 Pros:
 * Player will select best bitrate for the current network speed and can switch bitrates on the fly
 * Builds buffer as-needed instead of continuously
-* Use of HTTP for data transfer means cheaper hosting and no firewall issues
+* Use of HTTP for data transfer means cheaper hosting and far fewer firewall issues
 * No state management on server-side - adaptation logic is done client-side
 
 Cons:
