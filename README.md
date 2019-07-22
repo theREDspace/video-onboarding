@@ -1,16 +1,29 @@
 # Video Concepts Overview
 
+## Video Terms
+
+**Media Content**: audio, video, and metadata tracks of information when synchronized allow for the computer to playback content
+**Hardware Encoder**: computer with specialized hardware intended for the production of media content.
+**Software Encoder**: runs on general commodity hardware and can produce media content albiet generally at a frame-per-second speed than a hardware encoder.
+**Codecs**: short for coder-decoder, technologies which enables smaller file sizes for media content (audio and video). Examples: H.264, AAC-LC, Opus, VP9, H.265, AV1.
+**Segment / Chunk**: an interchangeable term used to define the pieces of _segmented_ media content.
+**Muxing**: Taking audio and video streams and putting them together into a container that when played will be able to synchronize their playback.
+**Demuxing**: Splitting a container into its seperate constituent parts.
+**Remux**: Move audio and video from one container format to another. This process is lossless with respect to the quality of the media content. However, sometimes the same information isn't present or required in one format or another and assumptions are made that may result in odd playback. Parts (audio, video, subtitles, etc) may be added/removed from the container as well during this process.
+**Transcode**: Process existing media content with new encoding settings. This process is lossy unlike remuxing. A different codec entirely, different codec settings, filters, etc...
+**Manifest**: a formalized structure for describing a playlist of media. Some types of manifests include more metadata about the media and support different features.
+**Packager**: software which will take an encoded peice of media content and "package" it into a container or manifest format.
+**Media Source Extensions (MSE)**: a collection of Browser APIs which enable a developer to add support for alternative methods of delivery of media to the browsers.
+
 ## Video File Format Breakdown
 
-Container - wraps video, audio, subtitles, metadata, etc into a single file
+Container - define a structured file format for containing video, audio, and metadata tracks for media.
+
+The most popular container formats we work with are part of MPEG-2, and MPEG-4 standards.
+* MPEG-2 Transport Streams (.ts)
+* MPEG-4 Part 14 (.mp4)
 
 ![](./images/containers.png)
-
-### Terms
-
-Re-mux: Wrap a container's constituent parts (video, audio, etc) in a new container format. Parts (audio, video, subtitles, etc) may added/removed from the container as well. (Lossless)
-
-Re-encode (aka transcode): Re-process video, audio, or both with new encoding settings (codec, bitrate, etc). (Lossy)
 
 ---
 
