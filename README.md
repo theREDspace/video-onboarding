@@ -18,7 +18,7 @@ Below you will see `media content` used as a short-hand for this document to mea
 ## Video Terms
 
 - **Hardware Encoder**: computer with specialized hardware intended for the production of media content.
-- **Software Encoder**: runs on general commodity hardware and can produce media content albiet generally at a frame-per-second speed than a hardware encoder.
+- **Software Encoder**: runs on general commodity hardware and can produce media content albiet generally at a frame-per-second speed slower than a hardware encoder.
 - **Codecs**: short for coder-decoder, technologies which enables smaller file sizes for media content (audio and video). Examples: H.264, AAC-LC, Opus, VP9, H.265, AV1.
 - **Segment / Chunk**: an interchangeable term used to define the pieces of _segmented_ media content.
 - **Muxing**: Taking audio and video streams and putting them together into a container that when played will be able to synchronize their playback.
