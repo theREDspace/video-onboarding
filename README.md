@@ -1,5 +1,19 @@
 # Video Concepts Overview
 
+- [Video Concepts Overview](#video-concepts-overview)
+  - [Video Terms](#video-terms)
+  - [Video File Format Breakdown](#video-file-format-breakdown)
+  - [Video Streaming Tech](#video-streaming-tech)
+    - [Progressive](#progressive)
+    - [RTMP Streaming](#rtmp-streaming)
+    - [HTTP Adaptive Bitrate Streaming](#http-adaptive-bitrate-streaming)
+  - [HLS Specifics](#hls-specifics)
+    - [Compatibility](#compatibility)
+  - [Extra Streaming Concepts](#extra-streaming-concepts)
+  - [Related Tech](#related-tech)
+  - [References](#references)
+
+
 ## Video Terms
 
 - **Media Content**: audio, video, and metadata tracks of information when synchronized allow for the computer to playback content
