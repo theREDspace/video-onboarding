@@ -104,7 +104,7 @@ Media Source Extensions (MSE) API can allow HLS format to be played in-browser a
 ![](./images/canmse.png)
 
 MSE allows JS scripts to take in the raw video data and re-mux it to a video container format that is supported by the current browser.
-The project HLS.js handles this conversion via MSE and we can build video players on top of it supporting HLS playback on all major browsers.
+The project [HLS.js](https://github.com/video-dev/hls.js) handles this conversion via MSE and we can build video players on top of it supporting HLS playback on all major browsers.
 
 ---
 
