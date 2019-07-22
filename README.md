@@ -1,17 +1,16 @@
 # Video Concepts Overview
 
-- [Video Concepts Overview](#video-concepts-overview)
-  - [Video Terms](#video-terms)
-  - [Video File Format Breakdown](#video-file-format-breakdown)
-  - [Video Streaming Tech](#video-streaming-tech)
-    - [Progressive](#progressive)
-    - [RTMP Streaming](#rtmp-streaming)
-    - [HTTP Adaptive Bitrate Streaming](#http-adaptive-bitrate-streaming)
-  - [HLS Specifics](#hls-specifics)
-    - [Compatibility](#compatibility)
-  - [Extra Streaming Concepts](#extra-streaming-concepts)
-  - [Related Tech](#related-tech)
-  - [References](#references)
+- [Video Terms](#video-terms)
+- [Video File Format Breakdown](#video-file-format-breakdown)
+- [Video Streaming Tech](#video-streaming-tech)
+  - [Progressive](#progressive)
+  - [RTMP Streaming](#rtmp-streaming)
+  - [HTTP Adaptive Bitrate Streaming](#http-adaptive-bitrate-streaming)
+- [HLS Specifics](#hls-specifics)
+  - [Compatibility](#compatibility)
+- [Extra Streaming Concepts](#extra-streaming-concepts)
+- [Related Tech](#related-tech)
+- [References](#references)
 
 Below you will see `media content` used as a short-hand for this document to mean audio, video, and/or metadata tracks of data, representing what would be normally called... a video.
 
