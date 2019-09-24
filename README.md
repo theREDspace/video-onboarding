@@ -116,18 +116,34 @@ The project [HLS.js](https://github.com/video-dev/hls.js) handles this conversio
 
 ## Extra Streaming Concepts
 
+* Client Side Ad Insertion (CSAI):
+  * Ads are inserted on the client-side and determined just-in-time when an opportunity is detected. Ad playback will require that content be stopped/interrupted, or be paused if using a two-player solution.
+  * A two-player solution is that where a video player may internally have two seperate rendering canvases that it controls - one for content, one for ads.
 * Server Side Ad Insertion (SSAI):
   * AKA Stitched ads, dynamic ad insertion
   * Ads are not encoded into the video but are inserted later (often at manifest request-time) into the HLS playlists (uses HLS discontinuity tag to indicate separate content)
   * Allows for ads to be chosen based on current inventory and possibly targeted based on current user data
+* DAI (Dynamic Ad Insertion):
+  * A conceptual term, which can be utilized with both CSAI and SSAI strategies. In general this means that there is the ability to specify/request variable amount of ad breaks ("opportunities") which can be filled.
+  * One example of when this is useful is for linear TV streams that may have outdated commericals within. It would be ideal to be able to dynamically insert new, fresh ads well after the original broadcasting date.
 * VAST, VPAID, VMAP
   * Video advertising format standards developed by the IAB (Interactive Advertising Bureau)
 * Encrypted Media Extensions (EME)
   * Browser API allowing implementation of DRM (Digital Rights Management)
+  
+## Digital Rights Management (DRM)
+
+* DRM Varieties
+  * Google Widevine
+    * There are two versions of Widevine, Classic - available only via a downloadable player. The other is Modular - works with HTML5 in Google Chrome and Android devices. Classic has been deprecated.
+  * Microsoft PlayReady
+    * Supported on Internet Explorer, Microsoft Edge, XBOX and many other Smart TVs and OTT devices.
+  * Apple FairPlay Streaming (FPS)
+    * Apple's DRM solution for HTTP Live Streaming (HLS) - it works on iOS, Apple TV, Safari on macOS.
 
 ---
 
-## Related Tech
+## Related Tech / Broadcasting Terminology
 
 * TV Everywhere (TVE) Authentication
   * Require a TV subscription to view video
@@ -136,7 +152,13 @@ The project [HLS.js](https://github.com/video-dev/hls.js) handles this conversio
     * (CAN) BDU - Broadcast Distribution Undertaking
   * Authorization (Auth-Z): The user's TV subscription has access to a given channel.
   * Adobe Pass (aka Primetime authentication) is the main provider of TVE services, acting as the middleman between video apps and hundreds of MVPDs
-  * Draw diagram
+* SVOD (Subscription Video On Demand)
+  - Subscription-based video streaming where the user has a set subscription plan and has access to VOD until that subscription has ended (e.g. Netflix)
+* TVOD (Transactional Video On Demand)
+  - Transactional-based video streaming is where a single transaction can gain the user access to specific content.
+  - More often, the service will be free to sign up for but content will require payment (e.g. iTunes)
+* AVOD (Advertisement-based Video On Demand)
+  - The VOD service is free to use and consume as it is supported by advertisment revenue (e.g. YouTube)
 
 ---
 
@@ -149,3 +171,6 @@ The project [HLS.js](https://github.com/video-dev/hls.js) handles this conversio
 * Adobe Pass Docs: <https://tve.helpdocsonline.com/home>
 * Adaptive bitrate streaming overview: <https://en.wikipedia.org/wiki/Adaptive_bitrate_streaming>
 * Video Container Details: <https://en.wikipedia.org/wiki/Comparison_of_video_container_formats>
+* SVOD, TVOD, AVOD: https://clipbucket.com/2019/03/07/understanding-the-terms-svod-avod-tvod-and-the-difference-between-vod-and-ott/
+* What is DRM?: https://www.streamingmedia.com/Articles/Editorial/What-Is-/What-Is-DRM-112279.aspx
+* DAI, CSAI, SSAI: https://www.headendinfo.com/csai-ssai/
