@@ -1,6 +1,7 @@
 - [Checking for support](#checking-for-support)
   - [video.canPlayType](#videocanplaytype)
   - [MediaSource.isTypeSupported](#mediasourceistypesupported)
+  - [MediaCapabilities](#mediacapabilities)
 - [HDR support](#hdr-support)
   - [Color Depth (CSSOM View Module, Editors Draft, 9 June 2021)](#color-depth-cssom-view-module-editors-draft-9-june-2021)
   - [Color Gamut - MatchMedia](#color-gamut---matchmedia)
@@ -27,6 +28,40 @@ Reference: https://developer.mozilla.org/en-US/docs/Web/Media/Formats/codecs_par
 |    An MPEG-4 file containing AVC (H.264) video, Main Profile, Level 4.2.     | `video/mp4; codecs="avc1.4d0002a"` |
 |                    An MPEG-4 file containing AAC-LC audio                    |  `audio/mp4; codecs="mp4a.40.2"`   |
 | An MPEG-4 file containing AV1 video, Main Profile, 8-bit color, all defaults | `video/mp4; codecs="av01.0.15M.8"` |
+
+### MediaCapabilities 
+
+Example below shows what requesting the follow configuration looks like:
+- Playback mechanism: Media Source
+- Video Encoding Information: AV1, Main profile, 10bit color, 1080p, ~18Mbps, 29.97fps, Dynamic HDR metadata (HDR10+, etc...)
+- Audio Encoding Information: Dolby Digital Plus audio, 5.1, ~1.7Mbps, 48khz.
+
+[Specification](https://www.w3.org/TR/2021/WD-media-capabilities-20210604/)
+
+```
+navigator.mediaCapabilities.decodingInfo({
+    type: 'media-source',
+    video: {
+      contentType: 'video/mp4; codecs="av01.0.15M.10"',
+      width: 1920,
+      height: 1080,
+      bitrate: 18832424,
+      framerate: 29.97,
+      hdrMetadataType: "smpteSt2094-10"
+    },
+    audio: {
+      contentType: 'audio/mp3; codecs="ec-3"',
+      channels: 6,
+      bitrate: 1703936,
+      samplerate: 48000
+    }
+}).then(function(result) {
+  console.log('This configuration is ' +
+        (result.supported ? '' : 'not ') + 'supported, ' +
+        (result.smooth ? '' : 'not ') + 'smooth, and ' +
+        (result.powerEfficient ? '' : 'not ') + 'power efficient.')
+});
+```
 
 ## HDR support
 
