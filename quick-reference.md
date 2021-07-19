@@ -42,12 +42,12 @@ Example below shows what requesting the follow configuration looks like:
 navigator.mediaCapabilities.decodingInfo({
     type: 'media-source',
     video: {
-      contentType: 'video/mp4; codecs="av01.0.15M.10"',
+      contentType: 'video/mp4; codecs="av01.0.15M.10.0.110.09.14.10"',
       width: 1920,
       height: 1080,
       bitrate: 18832424,
       framerate: 29.97,
-      hdrMetadataType: "smpteSt2094-10"
+      hdrMetadataType: "smpteSt2094-40"
     },
     audio: {
       contentType: 'audio/mp3; codecs="ec-3"',
