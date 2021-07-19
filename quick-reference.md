@@ -9,6 +9,7 @@
 ## Checking for support
 
 Testpage: https://cconcolato.github.io/media-mime-support/
+
 Reference: https://developer.mozilla.org/en-US/docs/Web/Media/Formats/codecs_parameter
 
 ### video.canPlayType
