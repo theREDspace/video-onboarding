@@ -36,7 +36,9 @@ Example below shows what requesting the follow configuration looks like:
 - Video Encoding Information: AV1, Main profile, 10bit color, 1080p, ~18Mbps, 29.97fps, Dynamic HDR metadata (HDR10+, etc...)
 - Audio Encoding Information: Dolby Digital Plus audio, 5.1, ~1.7Mbps, 48khz.
 
-[Specification](https://www.w3.org/TR/2021/WD-media-capabilities-20210604/)
+References:
+- [MediaCapabilities Specification](https://www.w3.org/TR/2021/WD-media-capabilities-20210604/)
+- [AV1 Color Specifications](https://aomediacodec.github.io/av1-spec/#color-config-semantics)
 
 ```
 navigator.mediaCapabilities.decodingInfo({
