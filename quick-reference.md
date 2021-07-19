@@ -1,26 +1,25 @@
-- [&lt;video&gt;.canPlayType](#videocanplaytype)
-- [MediaSource.isTypeSupported](#mediasourceistypesupported)
-  - [Basic codec strings](#basic-codec-strings)
-  - [Examples](#examples)
+- [Checking for support](#checking-for-support)
+  - [video.canPlayType](#videocanplaytype)
+  - [MediaSource.isTypeSupported](#mediasourceistypesupported)
 - [HDR support](#hdr-support)
   - [Color Depth (CSSOM View Module, Editors Draft, 9 June 2021)](#color-depth-cssom-view-module-editors-draft-9-june-2021)
   - [Color Gamut - MatchMedia](#color-gamut---matchmedia)
   - [Use with MediaCapabilities API](#use-with-mediacapabilities-api)
 
-## &lt;video&gt;.canPlayType
+## Checking for support
 
-|        Description        |                    Argument                    |
-| :-----------------------: | :--------------------------------------------: |
-| Dolby Digital Plus (EC-3) | `video.canPlayType('audio/mp4;codecs="ec-3"')` |
-
-
-## MediaSource.isTypeSupported
-
-### Basic codec strings
-
+Testpage: https://cconcolato.github.io/media-mime-support/
 Reference: https://developer.mozilla.org/en-US/docs/Web/Media/Formats/codecs_parameter
 
-### Examples
+### video.canPlayType
+
+|        Description        |                    Argument                     |
+| :-----------------------: | :---------------------------------------------: |
+|   Dolby Digital (AC-3)    | `video.canPlayType('audio/mp4; codecs="ac-3"')` |
+| Dolby Digital Plus (EC-3) | `video.canPlayType('audio/mp4; codecs="ec-3"')` |
+
+
+### MediaSource.isTypeSupported
 
 |                                 Description                                  |              Argument              |
 | :--------------------------------------------------------------------------: | :--------------------------------: |
