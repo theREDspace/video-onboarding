@@ -1,7 +1,4 @@
-Reference Material
-
 - [&lt;video&gt;.canPlayType](#videocanplaytype)
-  - [Dolby Digital Plus (EC-3)](#dolby-digital-plus-ec-3)
 - [MediaSource.isTypeSupported](#mediasourceistypesupported)
   - [Basic codec strings](#basic-codec-strings)
   - [Examples](#examples)
@@ -12,9 +9,10 @@ Reference Material
 
 ## &lt;video&gt;.canPlayType
 
-### Dolby Digital Plus (EC-3)
+|        Description        |                    Argument                    |
+| :-----------------------: | :--------------------------------------------: |
+| Dolby Digital Plus (EC-3) | `video.canPlayType('audio/mp4;codecs="ec-3"')` |
 
-video.canPlayType('audio/mp4;codecs="ec-3"')
 
 ## MediaSource.isTypeSupported
 
@@ -24,11 +22,11 @@ Reference: https://developer.mozilla.org/en-US/docs/Web/Media/Formats/codecs_par
 
 ### Examples
 
-| Description 	| Argument	|
-|:-:	|:-:	|
-| An MPEG-4 file containing AVC (H.264) video, Main Profile, Level 4.2.	| video/mp4; codecs="avc1.4d0002a"	|
-| An MPEG-4 file containing AAC-LC audio	| audio/mp4; codecs="mp4a.40.2"	|
-| An MPEG-4 file containing AV1 video, Main Profile, 8-bit color, all defaults	| video/mp4; codecs="av01.0.15M.8"	|
+|                                 Description                                  |              Argument              |
+| :--------------------------------------------------------------------------: | :--------------------------------: |
+|    An MPEG-4 file containing AVC (H.264) video, Main Profile, Level 4.2.     | `video/mp4; codecs="avc1.4d0002a"` |
+|                    An MPEG-4 file containing AAC-LC audio                    |  `audio/mp4; codecs="mp4a.40.2"`   |
+| An MPEG-4 file containing AV1 video, Main Profile, 8-bit color, all defaults | `video/mp4; codecs="av01.0.15M.8"` |
 
 ## HDR support
 
