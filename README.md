@@ -84,10 +84,10 @@ Cons:
 
 Example playback engines that support these styles of content are below.
 
-[Shaka Player Demo](https://shaka-player-demo.appspot.com/demo/)
-[HLS.js Demo](https://hls-js.netlify.app/demo/)
-[DASH.js Demo](https://reference.dashif.org/dash.js/v4.3.0/samples/dash-if-reference-player/index.html)
-[Video.js Plugin](https://github.com/videojs/http-streaming)
+- [Shaka Player Demo](https://shaka-player-demo.appspot.com/demo/)
+- [HLS.js Demo](https://hls-js.netlify.app/demo/)
+- [DASH.js Demo](https://reference.dashif.org/dash.js/v4.3.0/samples/dash-if-reference-player/index.html)
+- [Video.js Plugin](https://github.com/videojs/http-streaming)
 
 ---
 
@@ -103,6 +103,7 @@ Example playback engines that support these styles of content are below.
 * Multiple Media Playlists can be generated for a single video and the client-side application can choose to play any one variant. You sometimes hear "bitrate ladder" to describe the set of variants that will be created at various qualities.
 
 HLS feature overview: <https://developer.apple.com/library/content/referencelibrary/GettingStarted/AboutHTTPLiveStreaming/about/about.html>
+
 Example Playlist features: <https://developer.apple.com/library/content/technotes/tn2288/_index.html>
 
 ### Compatibility
