@@ -99,15 +99,14 @@ See [here](./MPEGTS%20Knowledge.md).
 
 ![](./images/hls.png)
 
-* Master playlist (.m3u8, aka manifest) includes URLs for bandwidth-specific playlist (.m3u8) files (aka rendition)
-* Playlists for each rendition has URLs for video segments
-* Video segments are in the .ts (transport stream) container format (newer versions also support mp4)
-* Master playlist can also include various metadata and extra content such as subtitle streams/file, I-frame playlists, and more (what's possible depends on HLS version supported)
+* Multivariant playlist includes URLs for bandwidth-specific Media Playlist files (aka rendition / variant)
+* Media Playlists contain the location of the video segments.
+* Video segments are in the .ts container format, or fragmented MP4, or more specifically sometimes CMAF.
+* Multivariant playlist can also include various metadata and extra content such as Media Playlists for subtitles, I-frame playlists, and more. This is mainly where the HLS version comes into play.
 * Video files may be encrypted at rest and decryption keys can be provided in the playlists for the player to handle decryption
-* Multiple master playlists can be generated (aka variants) for a single video and the client-side application can choose to play any one variant. This is often done to make different renditions available to different devices e.g. a mobile variant may contain lower minimum bandwidth renditions as compared to a variant meant for console.
+* Multiple Media Playlists can be generated for a single video and the client-side application can choose to play any one variant. You sometimes hear "bitrate ladder" to describe the set of variants that will be created at various qualities.
 
 HLS feature overview: <https://developer.apple.com/library/content/referencelibrary/GettingStarted/AboutHTTPLiveStreaming/about/about.html>
-
 Example Playlist features: <https://developer.apple.com/library/content/technotes/tn2288/_index.html>
 
 ### Compatibility
@@ -119,7 +118,11 @@ Media Source Extensions (MSE) API can allow HLS format to be played in-browser a
 ![](./images/canmse.png)
 
 MSE allows JS scripts to take in the raw video data and re-mux it to a video container format that is supported by the current browser.
-The project [HLS.js](https://github.com/video-dev/hls.js) handles this conversion via MSE and we can build video players on top of it supporting HLS playback on all major browsers.
+
+There are multiple projects on the web that have come up that support the remux from MPEG-TS -> ISOBMFF, the container format supported by MSE.
+- The project [HLS.js](https://github.com/video-dev/hls.js) handles this conversion internally.
+- The project [Shaka Player](https://github.com/shaka-project/shaka-player) handles this conversion using a library component [mux.js](https://github.com/videojs/mux.js).
+- The project [Video.js](https://github.com/videojs/video.js) handles this conversion using a library component [mux.js](https://github.com/videojs/mux.js).
 
 ---
 
