@@ -67,7 +67,7 @@ Notable exception to this rule: HQ Trivia used RTMP to stream their media.
 
 ### HTTP Adaptive Bitrate Streaming
 
-![Manifests for ABR streaming](./images/manifests.png)
+![Manifests for ABR streaming](./images/manifest-abr.png)
 
 * Encodes source video to multiple different bitrates referred to as renditions
 * Each rendition is segmented into small video 'segments' which range in duration based on requirements, but are generally between 6-10 seconds in duration.
