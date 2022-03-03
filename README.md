@@ -7,11 +7,11 @@
     - [Progressive](#progressive)
     - [RTMP Streaming](#rtmp-streaming)
     - [HTTP Adaptive Bitrate Streaming](#http-adaptive-bitrate-streaming)
-  - [MPEG Transport Stream deep-dive](#mpeg-transport-stream-deep-dive)
   - [HLS Specifics](#hls-specifics)
     - [Compatibility](#compatibility)
   - [Extra Streaming Concepts](#extra-streaming-concepts)
   - [Digital Rights Management (DRM)](#digital-rights-management-drm)
+  - [MPEG Transport Stream deep-dive](#mpeg-transport-stream-deep-dive)
   - [Related Tech / Broadcasting Terminology](#related-tech--broadcasting-terminology)
   - [References](#references)
 
@@ -91,10 +91,6 @@ Example playback engines that support these styles of content are below.
 
 ---
 
-## MPEG Transport Stream deep-dive
-
-See [here](./MPEGTS%20Knowledge.md).
-
 ## HLS Specifics
 
 ![](./images/hls.png)
@@ -152,6 +148,12 @@ There are multiple projects on the web that have come up that support the remux 
     * Supported on Internet Explorer, Microsoft Edge, XBOX and many other Smart TVs and OTT devices.
   * Apple FairPlay Streaming (FPS)
     * Apple's DRM solution for HTTP Live Streaming (HLS) - it works on iOS, Apple TV, Safari on macOS.
+
+---
+
+## MPEG Transport Stream deep-dive
+
+See [here](./MPEGTS%20Knowledge.md).
 
 ---
 
