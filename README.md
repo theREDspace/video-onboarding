@@ -1,17 +1,19 @@
 # Video Concepts Overview
 
-- [Video Terms](#video-terms)
-- [Video File Format Breakdown](#video-file-format-breakdown)
-- [Video Streaming Options](#video-streaming-options)
-  - [Progressive](#progressive)
-  - [RTMP Streaming](#rtmp-streaming)
-  - [HTTP Adaptive Bitrate Streaming](#http-adaptive-bitrate-streaming)
-- [MPEG Transport Stream deep-dive](#mpeg-transport-stream-deep-dive)
-- [HLS Specifics](#hls-specifics)
-  - [Compatibility](#compatibility)
-- [Extra Streaming Concepts](#extra-streaming-concepts)
-- [Related Tech](#related-tech)
-- [References](#references)
+- [Video Concepts Overview](#video-concepts-overview)
+  - [Video Terms](#video-terms)
+  - [Video File Format Breakdown](#video-file-format-breakdown)
+  - [Video Streaming Options](#video-streaming-options)
+    - [Progressive](#progressive)
+    - [RTMP Streaming](#rtmp-streaming)
+    - [HTTP Adaptive Bitrate Streaming](#http-adaptive-bitrate-streaming)
+  - [MPEG Transport Stream deep-dive](#mpeg-transport-stream-deep-dive)
+  - [HLS Specifics](#hls-specifics)
+    - [Compatibility](#compatibility)
+  - [Extra Streaming Concepts](#extra-streaming-concepts)
+  - [Digital Rights Management (DRM)](#digital-rights-management-drm)
+  - [Related Tech / Broadcasting Terminology](#related-tech--broadcasting-terminology)
+  - [References](#references)
 
 Below you will see `media content` used as a short-hand for this document to mean audio, video, and/or metadata tracks of data, representing what would be normally called... a video.
 
@@ -33,11 +35,11 @@ Below you will see `media content` used as a short-hand for this document to mea
 
 Container - define a structured file format for containing video, audio, and metadata tracks for media.
 
-The most popular container formats we work with are part of MPEG-2, and MPEG-4 standards.
+The most popular container formats we work with are part of MPEG-2, and ISOBMFF standards.
 * MPEG-2 Transport Streams (.ts)
-* MPEG-4 Part 14 (.mp4)
+* ISO Base Media File Format (.mp4)
 
-![](./images/containers.png)
+![What do containers wrap?](./images/containers.png)
 
 ---
 
@@ -65,6 +67,8 @@ Notable exception to this rule: HQ Trivia used RTMP to stream their media.
 
 ### HTTP Adaptive Bitrate Streaming
 
+![Manifests for ABR streaming](./images/manifests.png)
+
 * Encodes source video to multiple different bitrates referred to as renditions
 * Each rendition is segmented into small video 'segments' which range in duration based on requirements, but are generally between 6-10 seconds in duration.
 * Standards: HLS, MPEG-DASH, MS Smooth Streaming...
@@ -78,7 +82,12 @@ Pros:
 Cons:
 * Compatibility/Support
 
-[Example ABS player (HLS, DASH, MSS) with bitrate graphs/stats](http://orange-opensource.github.io/hasplayer.js/1.11.0/samples/Dash-IF/index.html)
+Example playback engines that support these styles of content are below.
+
+[Shaka Player Demo](https://shaka-player-demo.appspot.com/demo/)
+[HLS.js Demo](https://hls-js.netlify.app/demo/)
+[DASH.js Demo](https://reference.dashif.org/dash.js/v4.3.0/samples/dash-if-reference-player/index.html)
+[Video.js Plugin](https://github.com/videojs/http-streaming)
 
 ---
 
