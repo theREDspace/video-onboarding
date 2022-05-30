@@ -1,0 +1,88 @@
+<html>
+
+<head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .bg-video-wrap {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      height: 100vh;
+    }
+
+    video {
+      min-width: 100%;
+      min-height: 100vh;
+      z-index: 1;
+    }
+
+    .overlay {
+      width: 100%;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-image: linear-gradient(45deg, rgba(0, 0, 0, .3) 50%, rgba(0, 0, 0, .7) 50%);
+      background-size: 3px 3px;
+      z-index: 2;
+    }
+
+    h1 {
+      text-align: center;
+      color: #fff;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      z-index: 3;
+      max-width: 400px;
+      width: 100%;
+      height: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-video-wrap">
+    <video onerror="console.error"></video>
+    <div class="overlay"></div>
+    <h1>Fullscreen video background</h1>
+  </div>
+</body>
+<script type="text/javascript">
+    let video = document.querySelector('video');
+    let mediaSource = new MediaSource();
+    video.src = URL.createObjectURL(mediaSource);
+    mediaSource.addEventListener('sourceopen', sourceOpen);
+
+    function sourceOpen(e) {
+        // when source is detached, allow gc
+        URL.revokeObjectURL(video.src);
+
+        let mime = 'video/mp4; codecs="avc1.4d0028, mp4a.40.2"';
+        let mediaSource = e.target;
+        let sourceBuffer = mediaSource.addSourceBuffer(mime);
+        sourceBuffer.addEventListener('updateend', (e) => {
+            if (!sourceBuffer.updating && mediaSource.readyState === 'open') {
+                mediaSource.endOfStream();
+            }
+        });
+        sourceBuffer.addEventListener("sourceended", (e) => {
+            console.log("SourceBuffer ended");
+        })
+        let videoUrl = "../../assets/cityscape.mp4";
+        fetch(videoUrl)
+            .then((resp) => resp.arrayBuffer())
+            .then((ab) => {
+                sourceBuffer.appendBuffer(new Uint8Array(ab));
+            })
+    }
+</script>
+
+</html>
